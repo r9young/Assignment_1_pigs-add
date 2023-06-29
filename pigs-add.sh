@@ -3,8 +3,8 @@
 file_add=$1
 
 for file_in_working in *; do # for loop all the files in working directory
-    if [ "$file_add" = "$file_in_working" ]; then
-        echo "$file_add is matched"
+    if [ "$file_add" = "$file_in_working" ]; then #check if adding file is in current working directory
+        echo "$file_add is matched" 
         break
     else
         echo "file does not exist"
