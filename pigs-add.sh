@@ -3,6 +3,7 @@
 file_add=$1
 
 for file_in_working in *; do # for loop all the files in working directory
+
     if [ "$file_add" = "$file_in_working" ]; then
         echo "$file_add is matched"
         break
@@ -10,6 +11,7 @@ for file_in_working in *; do # for loop all the files in working directory
         echo "file does not exist"
         break
     fi
+
 done
 
 
