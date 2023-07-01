@@ -6,6 +6,7 @@ for file_add in $@;do
 
     if [ -e "$file_path" ]; then 
         echo "$file_add is in the directory" 
+
     else
         echo "$file_add does not exist in the directory, so it has been added"
         cp $file_add .pig/index/
