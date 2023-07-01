@@ -1,17 +1,15 @@
-#!/bin/bash
+#!/bin/dash
 
-file_add=$1
 
-for file_in_working in *; do # for loop all the files in working directory
+for file_add in $@;do
+    file_path=".pig/index/$file_add"
 
-    if [ "$file_add" = "$file_in_working" ]; then
-        echo "$file_add is matched"
-        break
+    if [ -e "$file_path" ]; then 
+        echo "$file_add is in the directory" 
     else
-        echo "file does not exist"
-        break
-    fi
-
+        echo "$file_add does not exist in the directory, so it has been added"
+        cp $file_add .pig/index/
+    fi  
 done
 
 
