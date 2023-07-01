@@ -23,6 +23,6 @@ for backup_file in .pig/index/*; do
     cp $backup_file .pig/objects/.snapshot.$max/
 done
 
-echo Creating snapshot "$max"
+echo Committed as commit "$max"
 
 

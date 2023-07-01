@@ -3,14 +3,21 @@
 
 for file_add in $@;do
     file_path=".pig/index/$file_add"
+    fold_path=".pig/index/"
+    
+    if [ ! -d "$fold_path" ];then # checking whehter .pig file exist
+        echo $0: error: pigs repository directory .pig not found
 
-    if [ -e "$file_path" ]; then 
-        echo "$file_add is in the directory" 
+    else 
 
-    else
-        echo "$file_add does not exist in the directory, so it has been added"
-        cp $file_add .pig/index/
-    fi  
+        if [ -e "$file_path" ]; then 
+            echo "$file_add is in the directory" 
+
+        else
+            # echo "$file_add does not exist in the directory, so it has been added"
+            cp $file_add .pig/index/
+        fi  
+    fi
 done
 
 
