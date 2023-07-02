@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/dash
 
-for file in .pig/objects/.snapshot.*; do
-    basename "$file"
-done 2>/dev/null
+
+search_path=".pig/objects"
+
+ls $search_path | sort -t '/' -k3 -r

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 
 option=$1
 file_name=$2

@@ -6,6 +6,8 @@ file_name=$(echo $input | cut -d ":" -f2 )
 fold_serial=$(echo $input | cut -d ":" -f1)
 
 
+
+
 index_path=".pig/index/"
 object_path=".pig/objects/"
 
