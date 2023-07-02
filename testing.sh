@@ -1,7 +1,4 @@
 #!/bin/dash
 
-list="first second third fourth"
-
-for item in $list; do
-    echo "$item"
-done
+echo $1
+echo $2
