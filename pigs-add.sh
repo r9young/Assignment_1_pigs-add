@@ -2,21 +2,26 @@
 
 
 for file_add in $@;do
+
     file_path=".pig/index/$file_add"
     fold_path=".pig/index/"
+    working_directory=$(pwd)
+
+    if [ ! -f "$working_directory/$file_add" ]; then
+        echo "$0: error: can not open 'non_existent_file'"
     
-    if [ ! -d "$fold_path" ];then # checking whehter .pig file exist
+    elif [ ! -d "$fold_path" ];then # checking whehter .pig file exist
         echo $0: error: pigs repository directory .pig not found
 
     else 
 
-        if [ -e "$file_path" ]; then 
-            echo "$file_add is in the directory" 
+        # if [ -e "$file_path" ]; then 
+        #     echo "$file_add is in the directory" 
 
-        else
+        # else
             # echo "$file_add does not exist in the directory, so it has been added"
             cp $file_add .pig/index/
-        fi  
+        # fi  
     fi
 done
 
