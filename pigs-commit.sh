@@ -1,4 +1,4 @@
-#!bin/dash
+#!/bin/dash
 
 commit() {
     
@@ -23,12 +23,24 @@ commit() {
                     max="$number"  
                 fi
             done
-            serial_number=$(($max+1))
-            mkdir .pig/objects/"$serial_number $file_name"
-            for backup_file in .pig/index/*; do
-                cp $backup_file .pig/objects/"$serial_number $file_name"/
+
+            object_folder_name=$(ls ./.pig/objects/ | grep -E "$max")
+          
+        
+            for file1 in ".pig/index/"; do
+                for file2 in ".pig/objects/$object_folder_name"; do
+                    if diff -iBw "$file1" "$file2" >/dev/null; then # if the files are exactly same
+                        echo "nothing to commit" 
+                    else
+                        serial_number=$(($max+1))
+                        mkdir .pig/objects/"$serial_number $file_name"
+                        for backup_file in .pig/index/*; do
+                            cp $backup_file .pig/objects/"$serial_number $file_name"/
+                        done
+                        echo Committed as commit "$serial_number"
+                    fi
+                done
             done
-            echo Committed as commit "$serial_number"
     fi
 }
 

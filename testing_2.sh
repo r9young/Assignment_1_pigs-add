@@ -1,14 +1,6 @@
 #!/bin/dash
 
-num_arg=$#
 
+object_folder_name=$(ls ./.pig/objects/ | grep -E "14")
 
-
-if [ $num_arg -eq 2 ]; then 
-    echo $2
-
-elif [ $num_arg -eq 3 ]; then 
-    
-    echo $3
-
-fi
+echo $object_folder_name
