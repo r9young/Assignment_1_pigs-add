@@ -2,32 +2,54 @@
 
 input=$1
 
-file_name=$(echo $input | cut -d ":" -f2 )
-fold_serial=$(echo $input | cut -d ":" -f1)
+info="$(echo $input)"
+
+folder_serial=$(echo $info | cut -d ":" -f1)
+folder_name=$(ls ./.pig/objects/ | grep -E "$folder_serial")
+
+file_name=$(echo $info | cut -d ":" -f2)
+
+index_path=".pig/index"
+object_path=".pig/objects"
+
+file_path=".pig/objects/$folder_name/$file_name"
 
 
-
-
-index_path=".pig/index/"
-object_path=".pig/objects/"
-
-if [ -z $fold_serial ]; then
-    if [ ! -f "$index_path/$file_name" ]; then
-    
+if [ -z  $folder_serial ]; then # This checks if the variable $folder_serial is empty or not set.
+    if [ ! -f "./.pig/index/$file_name" ]; then #This checks if a file does not exist. 
         echo "$0: error: '$file_name' not found in index"
+    else
+        index_file_path="./.pig/index/$file_name"
+        while read -r line 
+        do
+            echo "$line"
+        done  < "$index_file_path"
     fi
 
-elif [ -n "$fold_serial" ]; then
-    if [ ! -f "$object_path/.snapshot.0/$file_name" ]; then
-        echo "$0: error: '$file_name' not found in commit 0"
-    fi
+    
 else
-
-    file_path=".pig/objects/.snapshot.$fold_serial/$file_serial"
-    while read -r line 
-    do
-        echo "$line"
-    done  < $file_path 
-
+    if [ ! -f "./.pig/objects/$folder_name/$file_name" ]; then 
+        echo "$0: error: '$file_name' not found in commit $folder_serial"
+    else
+        object_file_path="./.pig/objects/$folder_name/$file_name"
+        while read -r line 
+        do
+            echo "$line"
+        done  < "$object_file_path"
+    fi
 fi
 
+
+
+# $ echo line 3 >> a
+# $ pigs-add a
+# $ echo line 4 >> a
+# $ pigs-show 0:a
+# line 1
+# $ pigs-show 1:a
+# line 1
+# line 2
+# $ pigs-show :a
+# line 1
+# line 2
+# line 3
