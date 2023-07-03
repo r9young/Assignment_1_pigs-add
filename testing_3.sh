@@ -59,6 +59,3 @@ elif [ $num_arg -eq 3 ]; then
     commit $3
 
 fi
-
-
-
