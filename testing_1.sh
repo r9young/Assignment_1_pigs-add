@@ -1,16 +1,20 @@
 #!/bin/dash
 
-for file1 in ".pig/index/"
-do
-    for file2 in ".pig/objects/9 sixth commit/"
-    do
-        if diff -iBw "$file1" "$file2" >/dev/null
-        then
-            echo "$file1 is a copy of $file2"
-        else
-            echo "it is different"
+latest_commit () {
+
+    max=0
+    for folder in .pig/objects/*; do
+
+        number=$(echo $folder | cut -d " " -f1 | cut -d "/" -f3) 
+        if [ "$number" -gt "$max" ]; then
+            max="$number"    
 
         fi
     done
-done
 
+    object_folder_name=$(ls ./.pig/objects/ | grep -e "$max\s")
+    echo $object_folder_name
+}
+
+
+latest_commit

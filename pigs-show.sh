@@ -16,7 +16,7 @@ object_path=".pig/objects"
 file_path=".pig/objects/$folder_name/$file_name"
 
 #check index
-if [ -z  $folder_serial ]; then # This checks if the variable $folder_serial is empty or not set.
+if [ -z  $folder_serial ]; then # This checks if the variable $folder_serial is empty or not set. e.g pig show :a
     if [ ! -f "./.pig/index/$file_name" ]; then #This checks if a file does not exist. 
         echo "$0: error: '$file_name' not found in index"
     else
