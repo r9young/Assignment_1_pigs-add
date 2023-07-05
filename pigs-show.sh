@@ -5,7 +5,8 @@ input=$1
 info="$(echo $input)"
 
 folder_serial=$(echo $info | cut -d ":" -f1)
-folder_name=$(ls ./.pig/objects/ | grep -E "$folder_serial")
+folder_name=$(ls ./.pig/objects/ | grep -e "$folder_serial\s")
+
 
 
 file_name=$(echo $info | cut -d ":" -f2)

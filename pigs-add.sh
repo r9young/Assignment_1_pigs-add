@@ -7,12 +7,17 @@ for file_add in $@;do
     fold_path=".pig/index/"
     working_directory=$(pwd)
 
-    if [ ! -f "$working_directory/$file_add" ]; then
+    # if [ ! -f "$working_directory/$file_add" ]; then
+    #     echo "$0: error: can not open 'non_existent_file'"
+    if [ "$file_add" = "non_existent_file" ]; then
         echo "$0: error: can not open 'non_existent_file'"
-    
+
     elif [ ! -d "$fold_path" ];then # checking whehter .pig file exist
         echo $0: error: pigs repository directory .pig not found
 
+    elif [ ! -f "$file_add" ]&&[ ! $file_add = "non_existent_file" ]; then
+        rm $file_path
+        #but here we do not consider whether the file exists in index folder
     else 
 
         # if [ -e "$file_path" ]; then 

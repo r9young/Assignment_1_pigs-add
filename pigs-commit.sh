@@ -11,8 +11,8 @@ commit() {
         mkdir .pig/objects/"$max $file_name"
         echo Committed as commit "$max"
         
-        for backup_file in .pig/index/*; do
-                cp $backup_file .pig/objects/"$max $file_name"
+        for backup_file in .pig/index/* ; do
+                cp $backup_file .pig/objects/"$max $file_name" 
         done
         
 
@@ -34,8 +34,8 @@ commit() {
                     else
                         serial_number=$(($max+1))
                         mkdir .pig/objects/"$serial_number $file_name"
-                        for backup_file in .pig/index/*; do
-                            cp $backup_file .pig/objects/"$serial_number $file_name"/
+                        for backup_file in .pig/index/* ; do 
+                            cp $backup_file .pig/objects/"$serial_number $file_name"/ 2>/dev/null
                         done
                         echo Committed as commit "$serial_number"
                     fi
@@ -57,6 +57,7 @@ add() {
       done
     done
 }
+
 
 
 

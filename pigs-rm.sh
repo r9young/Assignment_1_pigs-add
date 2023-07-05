@@ -24,20 +24,44 @@ latest_commit () {
     echo $object_folder_name
 }
 
-latest_commit
 
-if [ $num_arg -eq 1 ]; then     
-    if [ ! -f $stage_dir/$filename ]; then
-        echo "$0: error: "$filename" is not in the pigs repository"
-     
-
+for arg in "$@"; do 
+    if [ "$arg" = "--cached" ]; then
+        for file in $@; do
+            if [ ! "$file" = "--cached" ]; then
+                rm $stage_dir/$file
+                # if [ ! -f $stage_dir/$file ]; then
+                #     echo pigs-show: error: $file not found in index
+                # elif [ -f $stage_dir/$file ]; then
+                #     rm $stage_dir/$file
+                # fi
+            fi
+        done
     fi
-fi
-        
-# elif [ $num_arg -eq 2 ]; then 
-    
-#     option=$1
-#     filename=$2
+done
 
+
+
+
+
+# if [ $num_arg -eq 1 ]; then     
+#     if [ ! -f $stage_dir/$filename ]; then
+#         echo "$0: error: "$filename" is not in the pigs repository"
+#     fi
+      
+# elif [ $num_arg -ge 2 ]; then 
+#     if [ "$1" = "--catched" ]; then
+#         for arg in $@; do
+#             # if [ "$arg" = "--catched" ]; then
+#             #     continue
+#             if [ ! "$arg" = "--catched" ]; then
+#                 if [ ! -f $stage_dir/$arg ]; then
+#                     echo pigs-show: error: $arg not found in index
+#                 elif [ -f $stage_dir/$arg ]; then
+#                     rm $stage_dir/$arg
+#                 fi
+#             fi
+#         done
+#     fi
 # fi
 
