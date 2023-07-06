@@ -21,7 +21,7 @@ filename=$(echo $folder | tr " " "/n" |tr "/" " ") # we need to fix this problem
 
 
 
-if [ -d ".pig/objects/$filename" ]; then
+if [ -e ".pig/objects/$filename/$1" ]; then
     echo "yes"
 fi
 
