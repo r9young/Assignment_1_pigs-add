@@ -59,6 +59,54 @@ if [ "$1" = "--cached" ]; then
         fi
     done
 
+#----------------------------------------------------------#
+
+elif [ "$1" = "--force" ] && [ "$2" = "--cached" ]; then 
+
+        for arg_fc in "$@"; do 
+
+            object_folder=$(latest_commit)
+            folder=$(echo $object_folder | cut -d"/" -f3)
+            foldername=$(echo $folder | tr " " "/n" |tr "/" " ") # we need to fix this problem: in "3 second commit", there must be some whitespace
+            
+
+            if [ "$arg_fc" = "--force" ]; then
+                continue
+
+            elif [ "$arg_fc" = "--cached" ]; then
+                continue
+
+            elif [ -e .pig/index/$arg_fc ]  >/dev/null 2>&1; then
+                rm .pig/index/$arg_fc
+            fi
+        done
+
+
+#----------------------------------------------------------#
+
+elif [ "$1" = "--force" ]; then 
+    object_folder=$(latest_commit)
+    folder=$(echo $object_folder | cut -d"/" -f3)
+    foldername=$(echo $folder | tr " " "/n" |tr "/" " ") # we need to fix this problem: in "3 second commit", there must be some whitespace
+        
+    for arg_force in "$@"; do 
+        if [ "$arg_force" = "--force" ]; then
+            continue
+        
+        elif [ -e ".pig/objects/$foldername/$arg_force" ] || [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then #~~~~~~!!!!!!!!!!!!!!!!!!!
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@
+            echo "$0: error: '$arg_force' is not in the pigs repository"
+        else
+            rm "$arg_force">/dev/null 2>&1
+            rm "$stage_dir/$arg_force">/dev/null 2>&1
+        fi
+        
+    done
+
+
+# If a file is not in the last commit, 
+# it means it's not yet part of the Git repository (unless it's part of the staging area but not yet committed). 
+#----------------------------------------------------------#
   
 
 elif [ ! "$1" = "--cached" ] || [ ! "$1" = "--force" ]; then

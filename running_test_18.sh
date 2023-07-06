@@ -26,14 +26,14 @@ echo 9 >b
 # pigs-rm.sh: error: 'b' in index is different to both the working file and the repository
 ./pigs-rm.sh --cached c
 ./pigs-rm.sh --cached d
-# ./pigs-rm.sh --cached e
+./pigs-rm.sh --cached e
 # pigs-rm.sh: error: 'e' is not in the pigs repository
-# ./pigs-rm.sh --force a
-# # pigs-rm.sh: error: 'a' is not in the pigs repository
-# ./pigs-rm.sh --force b
-# ./pigs-rm.sh --force c
-# # pigs-rm.sh: error: 'c' is not in the pigs repository
-# ./pigs-rm.sh --force d
-# # pigs-rm.sh: error: 'd' is not in the pigs repository
-# ./pigs-rm.sh --force e
-# # pigs-rm.sh: error: 'e' is not in the pigs repository
+./pigs-rm.sh --force a
+# pigs-rm.sh: error: 'a' is not in the pigs repository
+./pigs-rm.sh --force b
+./pigs-rm.sh --force c
+# pigs-rm.sh: error: 'c' is not in the pigs repository
+./pigs-rm.sh --force d
+# pigs-rm.sh: error: 'd' is not in the pigs repository
+./pigs-rm.sh --force e
+# pigs-rm.sh: error: 'e' is not in the pigs repository
