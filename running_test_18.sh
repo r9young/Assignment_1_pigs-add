@@ -19,15 +19,15 @@ echo 9 >b
 # pigs-rm.sh: error: 'c' has staged changes in the index
 ./pigs-rm.sh d
 # pigs-rm.sh: error: 'd' has staged changes in the index
-# ./pigs-rm.sh e
-# # pigs-rm.sh: error: 'e' is not in the pigs repository
-# ./pigs-rm.sh --cached a
-# ./pigs-rm.sh --cached b
-# # pigs-rm.sh: error: 'b' in index is different to both the working file and the repository
-# ./pigs-rm.sh --cached c
-# ./pigs-rm.sh --cached d
+./pigs-rm.sh e
+# pigs-rm.sh: error: 'e' is not in the pigs repository
+./pigs-rm.sh --cached a
+./pigs-rm.sh --cached b
+# pigs-rm.sh: error: 'b' in index is different to both the working file and the repository
+./pigs-rm.sh --cached c
+./pigs-rm.sh --cached d
 # ./pigs-rm.sh --cached e
-# # pigs-rm.sh: error: 'e' is not in the pigs repository
+# pigs-rm.sh: error: 'e' is not in the pigs repository
 # ./pigs-rm.sh --force a
 # # pigs-rm.sh: error: 'a' is not in the pigs repository
 # ./pigs-rm.sh --force b

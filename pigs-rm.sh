@@ -27,14 +27,39 @@ latest_commit () {
 
 if [ "$1" = "--cached" ]; then 
     for arg_cached in "$@"; do 
+
+        object_folder=$(latest_commit)
+        folder=$(echo $object_folder | cut -d"/" -f3)
+        foldername=$(echo $folder | tr " " "/n" |tr "/" " ") # we need to fix this problem: in "3 second commit", there must be some whitespace
+        
+
         if [ "$arg_cached" = "--cached" ]; then
             continue
-        elif [ ! -e $stage_dir/$arg_cached ]; then
-            echo pigs-show: error: $arg_cached not found in index
+
+        elif [ ! -e $stage_dir/$arg_cached ] ; then
+
+            if  ! diff -iBw ".pig/objects/$foldername/$arg_cached" "$arg_cached" >/dev/null 2>&1; then
+                echo "$0: error: '$arg_cached' is not in the pigs repository"
+            else
+                echo pigs-show: error: $arg_cached not found in index
+            fi
+
         elif [ -e $stage_dir/$arg_cached ]; then
-            rm $stage_dir/$arg_cached
+
+            if  ! diff -iBw "$stage_dir/$arg_cached" "$arg_cached" >/dev/null 2>&1 &&
+                ! diff -iBw "$stage_dir/$arg_cached" ".pig/objects/$foldername/$arg_cached" >/dev/null 2>&1; then
+                    echo "$0: error: '$arg_cached' in index is different to both the working file and the repository"
+
+            elif diff -iBw "$stage_dir/$arg_cached" ".pig/objects/$foldername/$arg_cached" >/dev/null 2>&1; then
+                rm $stage_dir/$arg_cached
+        
+            else
+                rm $stage_dir/$arg_cached
+            fi
         fi
     done
+
+  
 
 elif [ ! "$1" = "--cached" ] || [ ! "$1" = "--force" ]; then
     for arg_rm in "$@"; do 
@@ -45,15 +70,12 @@ elif [ ! "$1" = "--cached" ] || [ ! "$1" = "--force" ]; then
         
             object_folder=$(latest_commit)
             folder=$(echo $object_folder | cut -d"/" -f3)
-            
             foldername=$(echo $folder | tr " " "/n" |tr "/" " ") # we need to fix this problem: in "3 second commit", there must be some whitespace
             
   
             if [ ! -e ".pig/objects/$foldername/$arg_rm" ]; then
                 echo testing_index > .pig/objects/$foldername/$arg_rm
             fi
-
-
 
  
             if ! diff -iBw "$stage_dir/$arg_rm" ".pig/objects/$foldername/$arg_rm" 2>&1 >/dev/null &&
@@ -86,6 +108,3 @@ elif [ ! "$1" = "--cached" ] || [ ! "$1" = "--force" ]; then
 fi
 
 
-# +++++ what if file cannot find in both working and commit file. false fale, error: 
-
-# pigs-rm: error: 'b' in index is different to both the working file and the repository
