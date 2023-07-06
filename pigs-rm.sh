@@ -93,8 +93,7 @@ elif [ "$1" = "--force" ]; then
         if [ "$arg_force" = "--force" ]; then
             continue
         
-        elif [ -e ".pig/objects/$foldername/$arg_force" ] || [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then #~~~~~~!!!!!!!!!!!!!!!!!!!
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@
+        elif [ ! -e ".pig/objects/$foldername/$arg_force" ] || [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then
             echo "$0: error: '$arg_force' is not in the pigs repository"
         else
             rm "$arg_force">/dev/null 2>&1
@@ -104,8 +103,7 @@ elif [ "$1" = "--force" ]; then
     done
 
 
-# If a file is not in the last commit, 
-# it means it's not yet part of the Git repository (unless it's part of the staging area but not yet committed). 
+# If a file is not in the last commit, it means it's not yet part of the Git repository (unless it's part of the staging area but not yet committed). 
 #----------------------------------------------------------#
   
 
