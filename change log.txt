@@ -1,0 +1,22 @@
+version 1.0           
+05JUL23 10:00
+pig-add, init,log, rm, show running all right. 
+
+potiential bugs:
+
+    elif [ ! -e ".pig/objects/$foldername/$arg_force" ] || [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then
+    testing 19 
+    w d:0 index d:7 commit: n/a
+    pig-rm --force d
+    # file should be deleted
+
+
+
+    elif [ ! -e ".pig/objects/$foldername/$arg_force" ] >/dev/null 2>&1; then
+    test 18
+    w a:1,4  index: n/a commit: a:1
+    $ pigs-rm --force a
+    # pigs-rm.sh: error: 'a' is not in the pigs repository
+
+    but pig-rm --force is running ok
+ 

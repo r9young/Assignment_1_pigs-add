@@ -93,11 +93,12 @@ elif [ "$1" = "--force" ]; then
         if [ "$arg_force" = "--force" ]; then
             continue
         
-        elif [ ! -e ".pig/objects/$foldername/$arg_force" ] || [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then
-            echo "$0: error: '$arg_force' is not in the pigs repository"
-        else
+        elif [  -e "$arg_force" ] && [  -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then
             rm "$arg_force">/dev/null 2>&1
             rm "$stage_dir/$arg_force">/dev/null 2>&1
+            
+        elif [ -e "$arg_force" ] && [ ! -e ".pig/index/$arg_force" ] >/dev/null 2>&1; then
+            echo "$0: error: '$arg_force' is not in the pigs repository"
         fi
         
     done
