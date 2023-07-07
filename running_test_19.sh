@@ -17,4 +17,9 @@ echo 0 >d
 ./pigs-rm.sh --cached a c
 ./pigs-rm.sh --force --cached b
 ./pigs-rm.sh --force --cached e
-# ./pigs-rm.sh --force d
+./pigs-rm.sh --force d
+# ./pigs-status.sh
+# a - deleted from index
+# b - deleted from index
+# c - deleted from index
+# e - untracked
