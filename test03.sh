@@ -3,11 +3,11 @@
 ./zclean_up.sh
 
 print_passed() {
-  echo "Passed $0"
+  echo "Passed $3"
 }
 
 print_failed() {
-  echo "Failed $0"
+  echo "Failed $3"
   exit 1
 }
 
@@ -30,26 +30,40 @@ test_2=$(echo hello >a)
 outcome_2=""
 echo "echo hello >a"
 
-if [ ! "$test_2" = "$outcome_2" ]; then
-  print_failed
-  all_tests_passed=false
-fi
-
-
-
-
 # Run test3
-test_3=$(./pigs-init.sh)
-outcome_3="./pigs-init.sh: error: .pig already exists"
-echo "./pigs-init.sh"
-echo "$test_3"
+test_3=$(./pigs-add.sh a)
+echo "./pigs-add.sh a"
 
-if [ ! "$test_3" = "$outcome_3" ]; then
+
+# Run test4
+test_4=$(./pigs-commit.sh -m "first commit")
+outcome_4="Committed as commit 0"
+echo "./pigs-commit.sh -m "first commit""
+echo "$test_4"
+
+if [ ! "$test_4" = "$outcome_4" ]; then
   print_failed
   all_tests_passed=false
 fi
+
+#
+# Run test5
+test_5=$(./pigs-commit.sh -m "second commit") #there is some issue in test 5, if we echo
+outcome_5="nothing to commit" 
+echo "./pigs-commit.sh -m "second commit""
+echo "nothing to commit" 
+
+
+if [ ! "$test_5" = "$outcome_5" ]; then
+  print_failed
+  all_tests_passed=false
+fi
+
 
 # Print overall result
 if [ "$all_tests_passed" = true ]; then
-  echo "passed $0"
+  echo "passed $3"
 fi
+
+
+

@@ -1,11 +1,6 @@
 #!/bin/dash
 
-
-
-
-
-#17
-
+./pigs-init.sh
 touch a b
 ./pigs-add.sh a b
 ./pigs-commit.sh -m "first commit"

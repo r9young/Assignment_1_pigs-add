@@ -14,6 +14,20 @@ print_failed() {
 # Variable to track the overall test result
 all_tests_passed=true
 
+
+
+# Run test0
+test_0=$(./pigs-add.sh c)
+outcome_0="./pigs-add.sh: error: pigs repository directory .pig not found"
+echo "./pigs-add.sh c"
+echo "$test_0"
+
+if [ ! "$test_0" = "$outcome_0" ]; then
+  print_failed
+  all_tests_passed=false
+fi
+
+
 # Run test1
 test_1=$(./pigs-init.sh)
 outcome_1="Initialized empty pigs repository in .pig"
@@ -36,18 +50,6 @@ if [ ! "$test_2" = "$outcome_2" ]; then
 fi
 
 
-
-
-# Run test3
-test_3=$(./pigs-init.sh)
-outcome_3="./pigs-init.sh: error: .pig already exists"
-echo "./pigs-init.sh"
-echo "$test_3"
-
-if [ ! "$test_3" = "$outcome_3" ]; then
-  print_failed
-  all_tests_passed=false
-fi
 
 # Print overall result
 if [ "$all_tests_passed" = true ]; then

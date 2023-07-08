@@ -29,7 +29,7 @@ commit() {
         
             for file1 in ".pig/index/"; do
                 for file2 in ".pig/objects/$object_folder_name"; do
-                    if diff -iBw "$file1" "$file2" 2>/dev/null; then # if the files are exactly same
+                    if diff -iBw "$file1" "$file2" >/dev/null 2>&1; then # if the files are exactly same
                         echo "nothing to commit" 
                     else
                         serial_number=$(($max+1))
