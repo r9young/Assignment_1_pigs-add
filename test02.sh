@@ -1,5 +1,7 @@
 #!/bin/dash
 
+#init add commit
+
 ./zclean_up.sh
 
 print_passed() {

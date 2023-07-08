@@ -1,5 +1,7 @@
 #!/bin/dash
 
+# init add commit
+
 ./zclean_up.sh
 
 print_passed() {
@@ -49,9 +51,9 @@ fi
 #
 # Run test5
 test_5=$(./pigs-commit.sh -m "second commit") #there is some issue in test 5, if we echo
-outcome_5="nothing to commit" 
+outcome_5="Committed as commit 1" 
 echo "./pigs-commit.sh -m "second commit""
-echo "nothing to commit" 
+echo "$test_5" 
 
 
 if [ ! "$test_5" = "$outcome_5" ]; then

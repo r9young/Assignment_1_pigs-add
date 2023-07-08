@@ -1,4 +1,5 @@
 #!/bin/dash
+#init
 
 ./zclean_up.sh
 

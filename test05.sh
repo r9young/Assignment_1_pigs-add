@@ -1,34 +1,19 @@
 #!/bin/dash
-
-#init
+# init rm
 
 ./zclean_up.sh
 
 print_passed() {
-  echo "Passed $0"
+  echo "Passed $3"
 }
 
 print_failed() {
-  echo "Failed $0"
+  echo "Failed $3"
   exit 1
 }
 
 # Variable to track the overall test result
 all_tests_passed=true
-
-
-
-# Run test0
-test_0=$(./pigs-add.sh c)
-outcome_0="./pigs-add.sh: error: pigs repository directory .pig not found"
-echo "./pigs-add.sh c"
-echo "$test_0"
-
-if [ ! "$test_0" = "$outcome_0" ]; then
-  print_failed
-  all_tests_passed=false
-fi
-
 
 # Run test1
 test_1=$(./pigs-init.sh)
@@ -46,14 +31,30 @@ test_2=$(echo hello >a)
 outcome_2=""
 echo "echo hello >a"
 
-if [ ! "$test_2" = "$outcome_2" ]; then
+# Run test3
+test_3=$(./pigs-add.sh a)
+echo "./pigs-add.sh a"
+
+
+
+# Run test4 - pig-rm
+test_4=$(./pigs-rm.sh c)
+outcome_4="./pigs-rm.sh: error: 'c' is not in the pigs repository"
+echo "./pigs-init.sh"
+echo "$test_4"
+
+if [ ! "$test_4" = "$outcome_4" ]; then
   print_failed
   all_tests_passed=false
 fi
 
 
 
+
 # Print overall result
 if [ "$all_tests_passed" = true ]; then
-  echo "passed $0"
+  echo "passed $3"
 fi
+
+
+
