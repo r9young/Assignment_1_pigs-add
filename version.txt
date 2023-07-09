@@ -1,0 +1,50 @@
+
+
+
+1. pig-add
+
+a) What distinguishes between the usage of if [ -d/-f/-e "folder_path"]; then?
+
+Commit operations in the pig context.
+
+
+
+
+2. pig-commits
+
+    a) How can the following issue be resolved?
+
+    In pigs-commit.sh, on line 27:
+
+    object_folder_name=$(ls ./.pig/objects/ | grep -E "$max") #substitute it
+
+    A warning, SC2010, is issued, advising not to use ls | grep. Instead, it suggests employing a glob or a for loop with a condition to accept non-alphanumeric filenames.
+
+
+    b) Why is it incorrect to apply a for loop and instead variables such as file1=".pig/index/" & file2=".pig/objects/$object_folder_name" have to be used? The following for loops appear to be wrong:
+
+    for file1 in ".pig/index/"; do --- wrong
+        for file2 in ".pig/objects/$object_folder_name"; do --- wrong
+
+
+
+    c) why we cannot use the for loop but have to use file1=".pig/index/" & file2=".pig/objects/$object_folder_name"
+
+    for file1 in ".pig/index/"; do --- wrong
+        for file2 in ".pig/objects/$object_folder_name"; do --- wrong
+
+
+
+    d) how you deal with the options in command? 
+
+
+
+3. pig-init
+
+    is any other better way to deal to code?
+
+
+4. pig-show
+
+    a) finding the folder's name
+    folder_name=$(ls ./.pig/objects/ | grep -e "$folder_serial\s") is there a good way?

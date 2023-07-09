@@ -25,21 +25,7 @@ commit() {
             done
 
             object_folder_name=$(ls ./.pig/objects/ | grep -E "$max") #substitue it
-     
-
-            # object_folder_name_list=""
-            # for file in ./.pig/objects/*; do
-            #     basename $file
-            #     if echo "$file" | grep -qE "$max"; then
-            #         object_folder_name_list="$file"
-            #         break
-            #     fi
-            # done
-     
-            # echo "$object_folder_name_list"
-  
-          
-            
+                 
             # for file1 in ".pig/index/"; do --- wrong
             #     for file2 in ".pig/objects/$object_folder_name"; do --- wrong
             file1=".pig/index/"
