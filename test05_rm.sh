@@ -1,14 +1,17 @@
 #!/bin/dash
-#init
+# init rm
 
-./zclean_up.sh
+
+rm -r ./.pig  >/dev/null 2>&1
+rm a b c d e f g  >/dev/null 2>&1
+
 
 print_passed() {
-  echo "Passed $0"
+  echo "Passed $3"
 }
 
 print_failed() {
-  echo "Failed $0"
+  echo "Failed $3"
   exit 1
 }
 
@@ -16,9 +19,9 @@ print_failed() {
 all_tests_passed=true
 
 # Run test1
-test_1=$(./pigs-init.sh)
+test_1=$(./pigs-init)
 outcome_1="Initialized empty pigs repository in .pig"
-echo "./pigs-init.sh"
+echo "./pigs-init"
 echo "$test_1"
 
 if [ ! "$test_1" = "$outcome_1" ]; then
@@ -31,26 +34,30 @@ test_2=$(echo hello >a)
 outcome_2=""
 echo "echo hello >a"
 
-if [ ! "$test_2" = "$outcome_2" ]; then
-  print_failed
-  all_tests_passed=false
-fi
-
-
-
-
 # Run test3
-test_3=$(./pigs-init.sh)
-outcome_3="./pigs-init.sh: error: .pig already exists"
-echo "./pigs-init.sh"
-echo "$test_3"
+test_3=$(./pigs-add a)
+echo "./pigs-add a"
 
-if [ ! "$test_3" = "$outcome_3" ]; then
+
+
+# Run test4 - pig-rm
+test_4=$(./pigs-rm c)
+outcome_4="./pigs-rm: error: 'c' is not in the pigs repository"
+echo "./pigs-init"
+echo "$test_4"
+
+if [ ! "$test_4" = "$outcome_4" ]; then
   print_failed
   all_tests_passed=false
 fi
+
+
+
 
 # Print overall result
 if [ "$all_tests_passed" = true ]; then
-  echo "passed $0"
+  echo "passed $3"
 fi
+
+
+

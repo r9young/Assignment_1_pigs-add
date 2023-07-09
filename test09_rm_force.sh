@@ -1,10 +1,14 @@
 #!/bin/dash
 
 
+
 # init add commit rm --force
 
 
-./zclean_up.sh
+rm -r ./.pig  >/dev/null 2>&1
+rm a b c d e f g  >/dev/null 2>&1
+
+
 
 print_passed() {
   echo "Passed $3"
@@ -19,9 +23,9 @@ print_failed() {
 all_tests_passed=true
 
 # Run test1
-test_1=$(./pigs-init.sh)
+test_1=$(./pigs-init)
 outcome_1="Initialized empty pigs repository in .pig"
-echo "./pigs-init.sh"
+echo "./pigs-init"
 echo "$test_1"
 
 if [ ! "$test_1" = "$outcome_1" ]; then
@@ -40,22 +44,22 @@ outcome_2=""
 echo "echo world >a"
 
 # Run test3 - add a to index
-test_3=$(./pigs-add.sh a)
-echo "./pigs-add.sh a"
+test_3=$(./pigs-add a)
+echo "./pigs-add a"
 
 
 # Run test4 - first commit
-test_4=$(./pigs-commit.sh -m "first commit")
+test_4=$(./pigs-commit -m "first commit")
 outcome_4="Committed as commit 0"
-echo "./pigs-commit.sh -m "first commit""
+echo "./pigs-commit -m "first commit""
 echo "$test_4"
 
 
 
 # Run test5 -  rm --force a
-test_5=$(./pigs-rm.sh --force b)
-outcome_4="./pigs-rm.sh: error: 'b' is not in the pigs repository"
-echo "./pigs-rm.sh --force b"
+test_5=$(./pigs-rm --force b)
+outcome_4="./pigs-rm: error: 'b' is not in the pigs repository"
+echo "./pigs-rm --force b"
 echo "$test_5"
 
 if [ ! "$(echo "$test_8" | tr -d '[:space:]')" = "$(echo "$outcome_8" | tr -d '[:space:]')" ]; then

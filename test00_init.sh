@@ -1,7 +1,11 @@
 #!/bin/dash
 #init
 
-./test_cleanup.sh
+
+rm -r ./.pig  >/dev/null 2>&1
+rm a b c d e f g  >/dev/null 2>&1
+
+
 
 print_passed() {
   echo "Passed $0"

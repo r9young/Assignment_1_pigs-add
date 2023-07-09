@@ -2,7 +2,10 @@
 #init add commit show
 
 
-./zclean_up.sh
+
+rm -r ./.pig  >/dev/null 2>&1
+rm a b c d e f g  >/dev/null 2>&1
+
 
 print_passed() {
   echo "Passed $3"
@@ -17,9 +20,9 @@ print_failed() {
 all_tests_passed=true
 
 # Run test1
-test_1=$(./pigs-init.sh)
+test_1=$(./pigs-init)
 outcome_1="Initialized empty pigs repository in .pig"
-echo "./pigs-init.sh"
+echo "./pigs-init"
 echo "$test_1"
 
 if [ ! "$test_1" = "$outcome_1" ]; then
@@ -33,14 +36,14 @@ outcome_2=""
 echo "echo hello >a"
 
 # Run test3
-test_3=$(./pigs-add.sh a)
-echo "./pigs-add.sh a"
+test_3=$(./pigs-add a)
+echo "./pigs-add a"
 
 
 # Run test4
-test_4=$(./pigs-commit.sh -m "first commit")
+test_4=$(./pigs-commit -m "first commit")
 outcome_4="Committed as commit 0"
-echo "./pigs-commit.sh -m "first commit""
+echo "./pigs-commit -m "first commit""
 echo "$test_4"
 
 if [ ! "$test_4" = "$outcome_4" ]; then
@@ -50,9 +53,9 @@ fi
 
 
 # Run test5
-test_5=$(./pigs-show.sh b)
-outcome_5="./pigs-show.sh: error: unknown commit 'b'"
-echo "./pigs-show.sh b"
+test_5=$(./pigs-show b)
+outcome_5="./pigs-show: error: unknown commit 'b'"
+echo "./pigs-show b"
 echo "$test_5"
 
 if [ ! "$test_5" = "$outcome_5" ]; then

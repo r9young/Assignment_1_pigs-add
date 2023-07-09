@@ -1,8 +1,7 @@
 #!/bin/d
 # init rm
 
-./test_clean_up
-
+./test_cleanup.sh
 print_passed() {
   echo "Passed $3"
 }
