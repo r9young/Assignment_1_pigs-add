@@ -33,11 +33,11 @@ else
     if [ -z "$folder_name" ]; then # the problem of previous code is we forget that $folder_name loop the folder, so we don't need loop again
         echo "$0: error: unknown commit '$folder_serial'"
    
-    elif [ ! -f "./.pig/objects/"$folder_name"/$file_name" ]; then 
+    elif [ ! -f "./.pig/objects/$folder_name/$file_name" ]; then 
         echo "$0: error: '$file_name' not found in commit $folder_serial"
 
     else
-        object_file_path="./.pig/objects/"$folder_name"/$file_name"
+        object_file_path="./.pig/objects/$folder_name/$file_name"
         while read -r line 
         do
             echo "$line"
@@ -45,19 +45,3 @@ else
         
     fi
 fi
-
-
-
-
-# $ echo line 3 >> a
-# $ pigs-add a
-# $ echo line 4 >> a
-# $ pigs-show 0:a
-# line 1
-# $ pigs-show 1:a
-# line 1
-# line 2
-# $ pigs-show :a
-# line 1
-# line 2
-# line 3

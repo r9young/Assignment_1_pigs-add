@@ -29,12 +29,14 @@ commit() {
 
             # object_folder_name_list=""
             # for file in ./.pig/objects/*; do
+            #     basename $file
             #     if echo "$file" | grep -qE "$max"; then
             #         object_folder_name_list="$file"
             #         break
             #     fi
             # done
-            # $object_folder_name=$(echo "$object_folder_name_list" | cut -d "/" -f4)
+     
+            # echo "$object_folder_name_list"
   
           
             
